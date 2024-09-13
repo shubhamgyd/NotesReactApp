@@ -8,7 +8,6 @@ export const Sidebar = () => {
       ? `bg-orange-600 text-slate-50 ${style}`
       : `${style} hover:bg-orange-600 hover:rounded-e-full hover:text-slate-50`;
   };
-  let smallScreen = "sm:text-left sm:w-390 sm:text-3";
   return (
     <aside className="flex flex-col lg:w-60 md:w-60 text-center sm:text-left h-screen border-r-2">
       <NavLink to="/" className={getStyles}>
