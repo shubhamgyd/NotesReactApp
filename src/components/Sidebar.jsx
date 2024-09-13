@@ -9,7 +9,7 @@ export const Sidebar = () => {
       : `${style} hover:bg-orange-600 hover:rounded-e-full hover:text-slate-50`;
   };
   return (
-    <aside className="flex flex-col w-60 h-screen border-r-2">
+    <aside className="flex flex-col lg:w-60 md:w-60 w-390 h-screen border-r-2">
       <NavLink to="/" className={getStyles}>
         <span className="material-symbols-outlined text-[2rem]">home</span>
         <span>Home</span>
