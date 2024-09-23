@@ -2,9 +2,9 @@ import { Navbar } from "../components/Navbar";
 import { Sidebar } from "../components/Sidebar";
 import { Footer } from "../components/Footer";
 import { useState } from "react";
-import { ArchiveTask } from "../components/ArchivedTask";
+import { DeletedTask } from "../components/DeletedTask";
 
-export const Archive = () => {
+export const Delete = () => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSideBarOpen(!isSideBarOpen);
@@ -26,7 +26,7 @@ export const Archive = () => {
         <Sidebar />
       </div>
 
-      <ArchiveTask />
+      <DeletedTask />
 
       <Footer />
     </div>

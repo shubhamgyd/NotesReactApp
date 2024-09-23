@@ -10,13 +10,26 @@ const TaskProvider = ({ children }) => {
     title: "",
     isPinned: false,
     isArchived: false,
+    isDeleted: false,
+    isImportant: false,
     taskList: [],
   };
-  const [{ title, text, taskList, isPinned, isArchived }, dispatch] =
-    useReducer(taskReducer, initialState);
+  const [
+    { title, text, taskList, isPinned, isArchived, isDeleted, isImportant },
+    dispatch,
+  ] = useReducer(taskReducer, initialState);
   return (
     <taskContext.Provider
-      value={{ title, text, taskList, isPinned, isArchived, dispatch }}
+      value={{
+        title,
+        text,
+        taskList,
+        isPinned,
+        isArchived,
+        isDeleted,
+        isImportant,
+        dispatch,
+      }}
     >
       {children}
     </taskContext.Provider>

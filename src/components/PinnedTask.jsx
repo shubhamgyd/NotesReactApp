@@ -5,10 +5,18 @@ export const PinnedTask = () => {
   const { taskList } = useTask();
 
   const pinnedTasks = taskList.filter(
-    ({ isPinned, isArchived }) => isPinned === true && isArchived === false
+    ({ isPinned, isArchived, isDeleted, isImportant }) =>
+      isPinned === true &&
+      isArchived === false &&
+      isDeleted === false &&
+      isImportant === false
   );
   const otherTasks = taskList.filter(
-    ({ isPinned, isArchived }) => isPinned !== true && isArchived === false
+    ({ isPinned, isArchived, isDeleted, isImportant }) =>
+      isPinned !== true &&
+      isArchived === false &&
+      isDeleted === false &&
+      isImportant === false
   );
 
   return taskList?.length > 0 ? (

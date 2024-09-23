@@ -1,8 +1,10 @@
 import { useTask } from "../context/taskContext";
-export const ShowTasks = ({ id, title, text, isPinned }) => {
+import { findItIsArchived } from "../utils/findItIsArchived";
+import { findItIsDeleted } from "../utils/findItIsDeleted";
+export const ShowTasks = ({ id, title, text, isPinned, isImportant }) => {
   const { taskList, dispatch } = useTask();
 
-  const handleDeleteClick = (id) => {
+  const handleDeleteForeverClick = (id) => {
     let newTaskList = taskList.filter((task) => {
       return task.id !== id;
     });
@@ -26,12 +28,23 @@ export const ShowTasks = ({ id, title, text, isPinned }) => {
     });
   };
 
-  const findItIsArchived = (taskList, id) => {
-    return taskList.some((task) => task.id === id && task.isArchived === true);
+  const handleDeleteClick = (id) => {
+    dispatch({
+      type: "RECOVERY_DELETE",
+      payload: id,
+    });
+  };
+
+  const handleImportantClick = (id) => {
+    dispatch({
+      type: "TOGGLE_IMPORTANT",
+      payload: id,
+    });
   };
 
   const isArchived = findItIsArchived(taskList, id);
   // console.log(isArchived);
+  const isDeleted = findItIsDeleted(taskList, id);
 
   return (
     <div
@@ -41,7 +54,7 @@ export const ShowTasks = ({ id, title, text, isPinned }) => {
       <div className="notes ">
         <div className="title flex justify-between p-1 font-semibold">
           {title}
-          {!isArchived ? (
+          {!isArchived && !isImportant ? (
             <button onClick={() => handlePinnedClick(id)}>
               <span
                 className={
@@ -60,20 +73,42 @@ export const ShowTasks = ({ id, title, text, isPinned }) => {
         </div>
       </div>
       <div className="">
-        <div className="icons flex justify-end gap-2 p-1">
-          <button onClick={() => handleArchivedClick(id)}>
-            <span
-              className={
-                isArchived ? "material-icons" : "material-symbols-outlined"
-              }
-            >
-              archive
-            </span>
-          </button>
-          <button onClick={() => handleDeleteClick(id)}>
-            <span className="material-symbols-outlined">delete</span>
-          </button>
-        </div>
+        {!isDeleted ? (
+          <div className="icons flex justify-between gap-2 p-1">
+            <div>
+              <button onClick={() => handleImportantClick(id)}>
+                <span class="material-symbols-outlined">stars</span>
+              </button>
+            </div>
+            <div>
+              <button onClick={() => handleArchivedClick(id)}>
+                <span
+                  className={
+                    isArchived ? "material-icons" : "material-symbols-outlined"
+                  }
+                >
+                  archive
+                </span>
+              </button>
+              <button onClick={() => handleDeleteClick(id)}>
+                <span className="material-symbols-outlined">
+                  {!isDeleted ? "delete" : "source_notes"}
+                </span>
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="icons flex justify-between gap-2 p-1">
+            <button onClick={() => handleDeleteForeverClick(id)}>
+              <span class="material-icons">delete_forever</span>
+            </button>
+            <button onClick={() => handleDeleteClick(id)}>
+              <span className="material-symbols-outlined">
+                {!isDeleted ? "delete" : "source_notes"}
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

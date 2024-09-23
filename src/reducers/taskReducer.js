@@ -21,6 +21,8 @@ export const taskReducer = (state, { type, payload }) => {
             text: state.text,
             isPinned: state.isPinned,
             isArchived: state.isArchived,
+            isDeleted: state.isDeleted,
+            isImportant: state.isImportant,
             id: uuid(),
           },
         ],
@@ -48,6 +50,22 @@ export const taskReducer = (state, { type, payload }) => {
         ...state,
         taskList: state.taskList.map((task) =>
           task.id === payload ? { ...task, isArchived: !task.isArchived } : task
+        ),
+      };
+    case "RECOVERY_DELETE":
+      return {
+        ...state,
+        taskList: state.taskList.map((task) =>
+          task.id === payload ? { ...task, isDeleted: !task.isDeleted } : task
+        ),
+      };
+    case "TOGGLE_IMPORTANT":
+      return {
+        ...state,
+        taskList: state.taskList.map((task) =>
+          task.id === payload
+            ? { ...task, isImportant: !task.isImportant }
+            : task
         ),
       };
     default:
