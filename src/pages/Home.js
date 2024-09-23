@@ -1,5 +1,7 @@
+import { Content } from "../components/Content";
 import { Navbar } from "../components/Navbar";
 import { Sidebar } from "../components/Sidebar";
+import { Footer } from "../components/Footer";
 import { useState } from "react";
 
 export const Home = () => {
@@ -8,8 +10,10 @@ export const Home = () => {
     setIsSideBarOpen(!isSideBarOpen);
   };
   return (
-    <>
-      <Navbar />
+    <div className="homepageContainer">
+      <div className="navbar">
+        <Navbar />
+      </div>
       <button className="mobile:hidden" onClick={toggleSidebar}>
         <span className="material-symbols-outlined text-[2rem]">
           {isSideBarOpen ? "close" : "menu"}
@@ -21,6 +25,10 @@ export const Home = () => {
       <div className="hidden mobile:block">
         <Sidebar />
       </div>
-    </>
+
+      <Content />
+
+      <Footer />
+    </div>
   );
 };
