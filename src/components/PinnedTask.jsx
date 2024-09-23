@@ -1,7 +1,7 @@
 export const PinnedTask = ({ taskList, dispatch }) => {
   const handleDelete = (id) => {
     let newTaskList = taskList.filter((task) => {
-      return task.id != id;
+      return task.id !== id;
     });
     dispatch({
       type: "DELETE",
