@@ -4,8 +4,12 @@ import { ShowTasks } from "./ShowTasks";
 export const PinnedTask = () => {
   const { taskList } = useTask();
 
-  const pinnedTasks = taskList.filter(({ isPinned }) => isPinned === true);
-  const otherTasks = taskList.filter(({ isPinned }) => isPinned !== true);
+  const pinnedTasks = taskList.filter(
+    ({ isPinned, isArchived }) => isPinned === true && isArchived === false
+  );
+  const otherTasks = taskList.filter(
+    ({ isPinned, isArchived }) => isPinned !== true && isArchived === false
+  );
 
   return taskList?.length > 0 ? (
     <div>

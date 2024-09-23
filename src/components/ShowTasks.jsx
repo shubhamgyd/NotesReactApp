@@ -2,7 +2,7 @@ import { useTask } from "../context/taskContext";
 export const ShowTasks = ({ id, title, text, isPinned }) => {
   const { taskList, dispatch } = useTask();
 
-  const handleDelete = (id) => {
+  const handleDeleteClick = (id) => {
     let newTaskList = taskList.filter((task) => {
       return task.id !== id;
     });
@@ -18,6 +18,21 @@ export const ShowTasks = ({ id, title, text, isPinned }) => {
       payload: id,
     });
   };
+
+  const handleArchivedClick = (id) => {
+    dispatch({
+      type: "TOGGLE_ARCHIVE",
+      payload: id,
+    });
+  };
+
+  const findItIsArchived = (taskList, id) => {
+    return taskList.some((task) => task.id === id && task.isArchived === true);
+  };
+
+  const isArchived = findItIsArchived(taskList, id);
+  // console.log(isArchived);
+
   return (
     <div
       key={id}
@@ -26,15 +41,19 @@ export const ShowTasks = ({ id, title, text, isPinned }) => {
       <div className="notes ">
         <div className="title flex justify-between p-1 font-semibold">
           {title}
-          <button onClick={() => handlePinnedClick(id)}>
-            <span
-              className={
-                isPinned ? "material-icons" : "material-symbols-outlined"
-              }
-            >
-              push_pin
-            </span>
-          </button>
+          {!isArchived ? (
+            <button onClick={() => handlePinnedClick(id)}>
+              <span
+                className={
+                  isPinned ? "material-icons" : "material-symbols-outlined"
+                }
+              >
+                push_pin
+              </span>
+            </button>
+          ) : (
+            ""
+          )}
         </div>
         <div className="w-full min-h-[2rem] h-full break-words  p-1">
           {text}
@@ -42,8 +61,16 @@ export const ShowTasks = ({ id, title, text, isPinned }) => {
       </div>
       <div className="">
         <div className="icons flex justify-end gap-2 p-1">
-          <span className="material-symbols-outlined">archive</span>
-          <button onClick={() => handleDelete(id)}>
+          <button onClick={() => handleArchivedClick(id)}>
+            <span
+              className={
+                isArchived ? "material-icons" : "material-symbols-outlined"
+              }
+            >
+              archive
+            </span>
+          </button>
+          <button onClick={() => handleDeleteClick(id)}>
             <span className="material-symbols-outlined">delete</span>
           </button>
         </div>

@@ -43,6 +43,13 @@ export const taskReducer = (state, { type, payload }) => {
           task.id === payload ? { ...task, isPinned: !task.isPinned } : task
         ),
       };
+    case "TOGGLE_ARCHIVE":
+      return {
+        ...state,
+        taskList: state.taskList.map((task) =>
+          task.id === payload ? { ...task, isArchived: !task.isArchived } : task
+        ),
+      };
     default:
       return state;
   }
