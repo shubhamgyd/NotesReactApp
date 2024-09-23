@@ -19,6 +19,8 @@ export const taskReducer = (state, { type, payload }) => {
           {
             title: state.title,
             text: state.text,
+            isPinned: state.isPinned,
+            isArchived: state.isArchived,
             id: uuid(),
           },
         ],
@@ -33,6 +35,13 @@ export const taskReducer = (state, { type, payload }) => {
       return {
         ...state,
         taskList: payload,
+      };
+    case "TOGGLE_PIN":
+      return {
+        ...state,
+        taskList: state.taskList.map((task) =>
+          task.id === payload ? { ...task, isPinned: !task.isPinned } : task
+        ),
       };
     default:
       return state;
