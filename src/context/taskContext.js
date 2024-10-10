@@ -12,7 +12,7 @@ const TaskProvider = ({ children }) => {
     isArchived: false,
     isDeleted: false,
     isImportant: false,
-    taskList: [],
+    taskList: JSON.parse(localStorage.getItem("notes")) || [],
   };
   const [
     { title, text, taskList, isPinned, isArchived, isDeleted, isImportant },

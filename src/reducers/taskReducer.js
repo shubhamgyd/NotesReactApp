@@ -1,18 +1,23 @@
 import { v4 as uuid } from "uuid";
 export const taskReducer = (state, { type, payload }) => {
+  let state1 = state;
   switch (type) {
     case "TITLE":
-      return {
+      state1 = {
         ...state,
         title: payload,
-      };
+      }
+      localStorage.setItem("notes", JSON.stringify(state1.taskList))
+      return state1;
     case "TEXT":
-      return {
+      state1 = {
         ...state,
         text: payload,
       };
+      localStorage.setItem("notes", JSON.stringify(state1.taskList));
+      return state1;
     case "ADD_NOTE":
-      return {
+      state1 = {
         ...state,
         taskList: [
           ...state.taskList,
@@ -27,40 +32,52 @@ export const taskReducer = (state, { type, payload }) => {
           },
         ],
       };
+      localStorage.setItem("notes", JSON.stringify(state1.taskList));
+      return state1
     case "CLEAR":
-      return {
+      state1 = {
         ...state,
         title: "",
         text: "",
       };
+      localStorage.setItem("notes", JSON.stringify(state1.taskList));
+      return state1
     case "DELETE":
-      return {
+      state1 = {
         ...state,
         taskList: payload,
       };
+      localStorage.setItem("notes", JSON.stringify(state1.taskList));
+      return state1
     case "TOGGLE_PIN":
-      return {
+      state1 = {
         ...state,
         taskList: state.taskList.map((task) =>
           task.id === payload ? { ...task, isPinned: !task.isPinned } : task
         ),
       };
+      localStorage.setItem("notes", JSON.stringify(state1.taskList));
+      return state1
     case "TOGGLE_ARCHIVE":
-      return {
+      state1 = {
         ...state,
         taskList: state.taskList.map((task) =>
           task.id === payload ? { ...task, isArchived: !task.isArchived } : task
         ),
       };
+      localStorage.setItem("notes", JSON.stringify(state1.taskList));
+      return state1
     case "RECOVERY_DELETE":
-      return {
+      state1 = {
         ...state,
         taskList: state.taskList.map((task) =>
           task.id === payload ? { ...task, isDeleted: !task.isDeleted } : task
         ),
       };
+      localStorage.setItem("notes", JSON.stringify(state1.taskList));
+      return state1
     case "TOGGLE_IMPORTANT":
-      return {
+      state1 = {
         ...state,
         taskList: state.taskList.map((task) =>
           task.id === payload
@@ -68,6 +85,8 @@ export const taskReducer = (state, { type, payload }) => {
             : task
         ),
       };
+      localStorage.setItem("notes", JSON.stringify(state1.taskList));
+      return state1
     default:
       return state;
   }
