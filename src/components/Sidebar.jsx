@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useShowSidebar } from "../context/showSidebar";
 
 export const Sidebar = () => {
+  const {showSidebar} = useShowSidebar;
   const getStyles = ({ isActive }) => {
     const style =
       "flex items-center gap-x-1.5 px-2 py-1 text-[1.5rem] font-medium rounded-e-full text-center max-mobile:text-[3rem]";
@@ -9,7 +11,7 @@ export const Sidebar = () => {
       : `${style} hover:bg-orange-600 hover:rounded-e-full hover:text-slate-50`;
   };
   return (
-    <aside className="sidebar flex flex-col w-full max-mobile:w-full h-full border-r-2">
+    <aside className={`flex flex-col w-full  h-full border-r-2`}>
       <NavLink to="/" className={getStyles}>
         <span className="material-symbols-outlined text-[2rem] max-mobile:text-[3rem]">
           home

@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <div className="footer flex justify-center items-center gap-2 font-bold">
+    <div className="flex justify-center items-center gap-2 font-bold">
       <a
         href="https://www.linkedin.com/in/shubham-yadav-6676a7239/"
         target="_blank"

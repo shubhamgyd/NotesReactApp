@@ -28,9 +28,9 @@ export const Content = () => {
   };
 
   return (
-    <div className="content flex flex-col gap-6 p-4">
+    <div className="flex flex-col gap-6 p-4">
       <div className="flex justify-center">
-        <div className="addTask flex flex-col relative w-80 min-h-[9rem] border p-2 rounded">
+        <div className="flex flex-col relative w-80 min-h-[9rem] border p-2 rounded">
           <div className="title w-full">
             <input
               value={title}
@@ -39,7 +39,7 @@ export const Content = () => {
               onChange={handleTitle}
             />
           </div>
-          <div className="task w-full  h-full break-words">
+          <div className="w-full  h-full break-words">
             <textarea
               value={text}
               className="w-full h-full outline-none bg-transparent"
@@ -56,7 +56,7 @@ export const Content = () => {
           </button>
         </div>
       </div>
-      <div className="pinnedTasks flex flex-wrap gap-6">
+      <div className="pinnedTasks flex flex-wrap justify-around gap-6">
         <PinnedTask />
       </div>
     </div>
