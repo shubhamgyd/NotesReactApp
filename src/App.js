@@ -4,7 +4,6 @@ import { Home } from "./pages/Home";
 import { Delete } from "./pages/Delete";
 import { Routes, Route } from "react-router-dom";
 import { Important } from "./pages/Important";
-import { useState } from "react";
 
 function App() {
   return (
