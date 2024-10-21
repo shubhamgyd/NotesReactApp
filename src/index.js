@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { TaskProvider } from "./context/taskContext";
 import { SidebarProvider } from "./context/showSidebar";
+import * as serviceWorker from './serviceWorker';
+
+serviceWorker.register();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
