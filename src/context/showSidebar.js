@@ -4,7 +4,7 @@ import { useState } from "react";
 const showSidebarContext = createContext();
 
 const SidebarProvider = ({children}) => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <showSidebarContext.Provider value={{showSidebar, setShowSidebar}}>
