@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { TaskProvider } from "./context/taskContext";
 import { SidebarProvider } from "./context/showSidebar";
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "/public/service-worker"
 
 serviceWorker.register();
 
