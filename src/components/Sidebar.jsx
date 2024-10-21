@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { useShowSidebar } from "../context/showSidebar";
 
 export const Sidebar = () => {
-  const {showSidebar} = useShowSidebar;
   const getStyles = ({ isActive }) => {
     const style =
       "flex items-center gap-x-1.5 px-2 py-1 text-[1.5rem] font-medium rounded-e-full text-center max-mobile:text-[3rem]";
