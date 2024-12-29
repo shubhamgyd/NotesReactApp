@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export const Sidebar = () => {
   const getStyles = ({ isActive }) => {
     const style =
-      "flex items-center gap-x-1.5 px-2 py-1 text-[1.5rem] font-medium rounded-e-full text-center max-mobile:text-[3rem]";
+      "flex items-center gap-x-1.5 px-2 py-1 my-1 text-[1.5rem] font-medium rounded-e-full text-center max-mobile:text-[3rem]";
     return isActive
       ? `bg-orange-600 text-slate-50 ${style}`
       : `${style} hover:bg-orange-600 hover:rounded-e-full hover:text-slate-50`;
